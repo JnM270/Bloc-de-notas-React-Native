@@ -1,49 +1,45 @@
-import { StyleSheet, Text, View, TouchableOpacity} from "react-native";
+//App maneja la navegación/rutas en el proyecto
 
-const Inicio = () => {
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Inicio from './Componentes/Inicio';
+import Login from './Componentes/Login';
+import Registro from './Componentes/Registro';
+import ListaNotas from './Componentes/ListaNotas';
+import CrearNotas from './Componentes/CrearNotas';
+import EditarNotas from './Componentes/EditarNotas';
+import SeleccionarNotas from './Componentes/SeleccionarNotas';
+
+const Stack = createStackNavigator();
+
+export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>¡Bienvenido a Amazing Note!</Text>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Registrarse</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Iniciar sesión</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Inicio">
+        <Stack.Screen name="Inicio">
+          {props => <Inicio {...props}/>}
+          </Stack.Screen> 
+        <Stack.Screen name="Registro" component={Registro} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="ListaNotas" component={ListaNotas} />
+        <Stack.Screen name="SeleccionarNotas" component={SeleccionarNotas} />
+        <Stack.Screen name="CrearNotas" component={CrearNotas} />
+        <Stack.Screen name="EditarNotas" component={EditarNotas} />
+        
+
+      </Stack.Navigator>
+      <StatusBar style="auto" />
+    </NavigationContainer>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f8f9fa",
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 20,
-  },
-  buttonContainer: {
-    flexDirection: "row",
-    gap: 10,
-  },
-  button: {
-    backgroundColor: "green",
-    paddingVertical: 12,
-    paddingHorizontal: 24,
-    borderRadius: 5,
-
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontFamily: "Verdana, Geneva, Tahoma, sans-serif",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
-
-export default Inicio;
