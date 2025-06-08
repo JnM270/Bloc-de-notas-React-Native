@@ -11,6 +11,7 @@ import ListaNotas from './Componentes/ListaNotas';
 import CrearNotas from './Componentes/CrearNotas';
 import EditarNotas from './Componentes/EditarNotas';
 import SeleccionarNotas from './Componentes/SeleccionarNotas';
+import Grupos from './Componentes/Grupos';
 
 const Stack = createStackNavigator();
 
@@ -27,7 +28,7 @@ export default function App() {
         <Stack.Screen name="SeleccionarNotas" component={SeleccionarNotas} />
         <Stack.Screen name="CrearNotas" component={CrearNotas} />
         <Stack.Screen name="EditarNotas" component={EditarNotas} />
-        
+        <Stack.Screen name="Grupos" component={Grupos} />
 
       </Stack.Navigator>
       <StatusBar style="auto" />
