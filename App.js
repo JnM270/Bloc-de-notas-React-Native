@@ -1,9 +1,9 @@
-//App maneja la navegación/rutas en el proyecto
-
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { useFonts } from "expo-font";
+import { Roboto_400Regular, Roboto_700Bold } from "@expo-google-fonts/roboto";
 import Inicio from './Componentes/Inicio';
 import Login from './Componentes/Login';
 import Registro from './Componentes/Registro';
@@ -16,20 +16,29 @@ import Grupos from './Componentes/Grupos';
 const Stack = createStackNavigator();
 
 export default function App() {
+  
+  const [fontsLoaded] = useFonts({
+    RobotoRegular: Roboto_400Regular,
+    RobotoBold: Roboto_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Inicio">
         <Stack.Screen name="Inicio">
-          {props => <Inicio {...props}/>}
-          </Stack.Screen> 
+          {props => <Inicio {...props} fontsLoaded={fontsLoaded} />}
+        </Stack.Screen> 
         <Stack.Screen name="Registro" component={Registro} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="ListaNotas" component={ListaNotas} />
         <Stack.Screen name="SeleccionarNotas" component={SeleccionarNotas} />
-        <Stack.Screen name="CrearNotas" component={CrearNotas} />
         <Stack.Screen name="EditarNotas" component={EditarNotas} />
+        <Stack.Screen name="CrearNotas" component={CrearNotas} />
         <Stack.Screen name="Grupos" component={Grupos} />
-
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
