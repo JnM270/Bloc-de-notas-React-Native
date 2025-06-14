@@ -1,14 +1,17 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native'; 
 import { useState } from 'react';
 
-const CrearNotas = ({ navigation, route }) => {
+ const CrearNotas = ({ navigation, route }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const notes = route.params?.notes || [];
+  const category = route.params?.category || 'General';
+  const categories = route.params?.categories || [];
+  const setCategories = route.params?.setCategories;
 
   const handleSave = () => {
-    if (!title.trim() || !description.trim()) {
-      Alert.alert('Error', 'Todos los campos son obligatorios');
+    if (!title.trim()) {
+      Alert.alert('Error', 'La nota debe tener un título');
       return;
     }
 
@@ -22,10 +25,15 @@ const CrearNotas = ({ navigation, route }) => {
       return;
     }
 
-    const newNote = { title, description };
+    const newNote = { title, description, category };
     const updatedNotes = [...notes, newNote].sort((a, b) => a.title.localeCompare(b.title));
 
-    navigation.navigate('ListaNotas', { notes: updatedNotes });
+    // Se agrega categoría
+    if (setCategories && !categories.includes(category)) {
+      setCategories([...categories, category]);
+    }
+    
+    navigation.navigate('ListaNotas', { notes: updatedNotes, categories });
   };
 
   return (
@@ -52,16 +60,20 @@ const CrearNotas = ({ navigation, route }) => {
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#c5d1b5',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: "#0d3900",
+    left: 6,
+    
   },
   input: {
     width: '100%',
@@ -69,12 +81,15 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 5,
+    borderRadius: 15,
+    backgroundColor:"white",
+    fontFamily: "RobotoRegular",
+
   },
   button: {
-    backgroundColor: 'green',
+    backgroundColor: '#0d3900',
     paddingVertical: 12,
-    borderRadius: 5,
+    borderRadius: 25,
     alignItems: 'center',
   },
   buttonText: {
@@ -84,3 +99,4 @@ const styles = StyleSheet.create({
 });
 
 export default CrearNotas;
+
