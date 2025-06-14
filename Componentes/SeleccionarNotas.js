@@ -41,7 +41,7 @@ const fixNotes = () => {
   if (alreadyPinned.length > 0) {
     Alert.alert(
       'Desfijar Notas',
-      'Algunas notas ya están fijadas. ¿Quieres quitarlas de la lista de fijadas?',
+      'Está nota está fijada, ¿Quieres desfijarla?',
       [
         { text: 'Cancelar', style: 'cancel' },
         {
@@ -104,7 +104,7 @@ const fixNotes = () => {
       {/* Botones de acción */}
       {selectedNotes.length > 0 && (
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.iconButton} onPress={deleteNotes}>
+          <TouchableOpacity style={styles.trashButton} onPress={deleteNotes}>
             <Icon name="trash" size={24} color="white" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton}>
@@ -112,9 +112,6 @@ const fixNotes = () => {
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton} onPress={fixNotes}>
             <Icon name="thumb-tack" size={24} color="white" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <Icon name="folder" size={24} color="white" />
           </TouchableOpacity>
           <TouchableOpacity style={styles.iconButton}>
             <Icon name="exchange" size={24} color="white" />
@@ -129,7 +126,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#c5d1b5',
   },
   noteItem: {
     flex: 1,
@@ -140,11 +137,12 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   selected: {
-    backgroundColor: '#d4edda', // Verde suave al seleccionar
+    backgroundColor: '#ffedba', // Color al seleccionar
   },
   noteTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: '#0d3900',
   },
   noteDescription: {
     fontSize: 16,
@@ -156,15 +154,25 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   iconButton: {
-    backgroundColor: 'green',
+    backgroundColor: '#0d3900',
     width: 50,
     height: 50,
     borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 5,
+    top: -40,
+  },
+    trashButton: {
+    backgroundColor: '#b22222',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    elevation: 5,
+    top: -40,
   },
 });
 
 export default SeleccionarNotas;
-
