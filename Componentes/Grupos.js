@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Grupos = ({ navigation, route }) => {
-  const { category, notes, setNotes, allNotes } = route.params;
+  const { category, notes, setNotes, allNotes, categories, setCategories } = route.params;
 
   const filteredNotes = allNotes.filter(note => note.category === category);
 
@@ -24,7 +24,7 @@ const Grupos = ({ navigation, route }) => {
             >
               <Text style={styles.noteTitle}>{item.title}</Text>
               <Text style={styles.noteDescription}>{item.description}</Text>
-              {item.fixed && <Icon name="thumb-tack" size={16} color="green" style={styles.pinnedIcon} />}
+              {item.fixed && <Icon name="thumb-tack" size={16} color="#0d3900" style={styles.pinnedIcon} />}
             </TouchableOpacity>
           )}
         />
@@ -33,7 +33,7 @@ const Grupos = ({ navigation, route }) => {
       {/* Botón para agregar nueva nota en la categoría */}
       <TouchableOpacity
         style={styles.addButton}
-        onPress={() => navigation.navigate('CrearNotas', { notes: allNotes, setNotes, category })}
+        onPress={() => navigation.navigate('CrearNotas', { notes: allNotes, setNotes, category, categories, setCategories })}
       >
         <Text style={styles.addButtonText}>+</Text>
       </TouchableOpacity>
@@ -45,18 +45,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#c5d1b5',
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 15,
+    color:"#0d3900"
   },
   emptyText: {
     fontSize: 20,
     textAlign: 'center',
     marginTop: 30,
+    color:"#0d3900"
   },
   noteItem: {
     flex: 1,
@@ -69,6 +71,7 @@ const styles = StyleSheet.create({
   noteTitle: {
     fontSize: 20,
     fontWeight: 'bold',
+    color: '#0d3900'
   },
   noteDescription: {
     fontSize: 16,
@@ -78,13 +81,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: 'green',
+    backgroundColor: '#0d3900',
     width: 60,
     height: 60,
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 5,
+    top: 650
   },
   addButtonText: {
     fontSize: 32,
@@ -93,3 +97,4 @@ const styles = StyleSheet.create({
 });
 
 export default Grupos;
+
