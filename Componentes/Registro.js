@@ -23,12 +23,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f8f9fa',
+    backgroundColor: '#c5d1b5',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
+    color: "#0d3900",
+    fontFamily: "RobotoBold",
   },
   input: {
     width: '80%',
@@ -36,17 +38,25 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 5,
+    borderRadius: 15,
+    backgroundColor: "white",
+    fontFamily: "RobotoRegular", 
   },
   button: {
-    backgroundColor: 'green',
+    backgroundColor: '#0d3900',
     paddingVertical: 12,
     paddingHorizontal: 24,
-    borderRadius: 5,
+    borderRadius: 25,
   },
   buttonText: {
     color: '#fff',
     fontSize: 18,
+    fontFamily: "RobotoRegular",
+  },
+   loginText: {
+    marginTop: 10,
+    color: "#0d3900",
+    fontFamily: "RobotoRegular",
   },
 });
 
